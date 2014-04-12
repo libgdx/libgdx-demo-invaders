@@ -11,23 +11,24 @@
  * governing permissions and limitations under the License.
  */
 
-package com.badlogic.gdxinvaders.screens;
+package com.badlogic.invaders.screens;
 
-import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
+import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 
-/** The main menu screen showing a background, the logo of the game and a label telling the user to touch the screen to start the
- * game. Waits for the touch and returns isDone() == true when it's done so that the ochestrating GdxInvaders class can switch to
- * the next screen.
+/** The game over screen displays the final score and a game over text and waits for the user to touch the screen in which case it
+ * will signal that it is done to the orchestrating GdxInvaders class.
+ * 
  * @author mzechner */
-public class MainMenu extends InvadersScreen {
+public class GameOver extends InvadersScreen {
 	/** the SpriteBatch used to draw the background, logo and text **/
 	private final SpriteBatch spriteBatch;
 	/** the background texture **/
@@ -42,7 +43,7 @@ public class MainMenu extends InvadersScreen {
 	private final Matrix4 viewMatrix = new Matrix4();
 	private final Matrix4 transformMatrix = new Matrix4();
 
-	public MainMenu () {
+	public GameOver () {
 		spriteBatch = new SpriteBatch();
 		background = new Texture(Gdx.files.internal("data/planet.jpg"));
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -52,8 +53,6 @@ public class MainMenu extends InvadersScreen {
 
 		font = new BitmapFont(Gdx.files.internal("data/font16.fnt"), Gdx.files.internal("data/font16.png"), false);
 
-		// check for attached controllers and if we are on
-		// Ouya.
 // if(Controllers.getControllers().size > 0) {
 // Controller controller = Controllers.getControllers().get(0);
 // if(Ouya.ID.equals(controller.getName())) {
@@ -69,15 +68,16 @@ public class MainMenu extends InvadersScreen {
 	}
 
 	@Override
-	public boolean isDone () {
-		return isDone;
+	public void dispose () {
+		spriteBatch.dispose();
+		background.dispose();
+		logo.dispose();
+		font.dispose();
 	}
 
 	@Override
-	public void update (float delta) {
-		if (Gdx.input.justTouched()) {
-			isDone = true;
-		}
+	public boolean isDone () {
+		return isDone;
 	}
 
 	@Override
@@ -92,24 +92,18 @@ public class MainMenu extends InvadersScreen {
 		spriteBatch.setColor(Color.WHITE);
 		spriteBatch.draw(background, 0, 0, 480, 320, 0, 0, 512, 512, false, false);
 		spriteBatch.enableBlending();
-		spriteBatch.draw(logo, 0, 320 - 128, 480, 128, 0, 0, 512, 256, false, false);
+		spriteBatch.draw(logo, 0, 320 - 128, 480, 128, 0, 256, 512, 256, false, false);
+		String text = "It is the end my friend.\nTouch to continue!";
+		TextBounds bounds = font.getMultiLineBounds(text);
 		spriteBatch.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		String text = "Touch screen to start!";
-		float width = font.getBounds(text).width;
-		font.draw(spriteBatch, text, 240 - width / 2, 128);
-		if (Gdx.app.getType() == ApplicationType.WebGL) {
-			text = "Press Enter for Fullscreen Mode";
-			width = font.getBounds(text).width;
-			font.draw(spriteBatch, "Press Enter for Fullscreen Mode", 240 - width / 2, 128 - font.getLineHeight());
-		}
+		font.drawMultiLine(spriteBatch, text, 0, 160 + bounds.height / 2, 480, HAlignment.CENTER);
 		spriteBatch.end();
 	}
 
 	@Override
-	public void dispose () {
-		spriteBatch.dispose();
-		background.dispose();
-		logo.dispose();
-		font.dispose();
+	public void update (float delta) {
+		if (Gdx.input.justTouched()) {
+			isDone = true;
+		}
 	}
 }

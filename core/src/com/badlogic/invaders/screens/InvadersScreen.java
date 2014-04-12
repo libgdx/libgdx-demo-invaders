@@ -11,7 +11,7 @@
  * governing permissions and limitations under the License.
  */
 
-package com.badlogic.gdxinvaders.screens;
+package com.badlogic.invaders.screens;
 
 import com.badlogic.gdx.Screen;
 

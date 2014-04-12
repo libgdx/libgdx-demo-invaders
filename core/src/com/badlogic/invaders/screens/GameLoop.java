@@ -11,14 +11,14 @@
  * governing permissions and limitations under the License.
  */
 
-package com.badlogic.gdxinvaders.screens;
+package com.badlogic.invaders.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdxinvaders.Renderer;
-import com.badlogic.gdxinvaders.simulation.Simulation;
-import com.badlogic.gdxinvaders.simulation.SimulationListener;
+import com.badlogic.invaders.Renderer;
+import com.badlogic.invaders.simulation.Simulation;
+import com.badlogic.invaders.simulation.SimulationListener;
 
 public class GameLoop extends InvadersScreen implements SimulationListener {
 	/** the simulation **/

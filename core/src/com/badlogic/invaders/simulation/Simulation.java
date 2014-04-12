@@ -11,7 +11,7 @@
  * governing permissions and limitations under the License.
  */
 
-package com.badlogic.gdxinvaders.simulation;
+package com.badlogic.invaders.simulation;
 
 import java.util.ArrayList;
 

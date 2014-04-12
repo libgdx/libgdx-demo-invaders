@@ -1,6 +1,6 @@
 android {
-    buildToolsVersion "19.0.0"
-    compileSdkVersion 17
+    buildToolsVersion "19.0.3"
+    compileSdkVersion 19
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -47,7 +47,7 @@ task copyAndroidNatives() {
 
 task run(type: Exec) {
     def adb = "$System.env.ANDROID_HOME/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', '%PACKAGE%.android/%PACKAGE%.android.AndroidLauncher'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.badlogic.invaders.android/com.badlogic.invaders.android.AndroidLauncher'
 }
 
 // sets up the Android Eclipse project, using the old Ant based build.

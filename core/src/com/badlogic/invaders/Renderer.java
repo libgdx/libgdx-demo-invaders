@@ -11,7 +11,7 @@
  * governing permissions and limitations under the License.
  */
 
-package com.badlogic.gdxinvaders;
+package com.badlogic.invaders;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -28,8 +28,8 @@ import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
 import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdxinvaders.simulation.Ship;
-import com.badlogic.gdxinvaders.simulation.Simulation;
+import com.badlogic.invaders.simulation.Ship;
+import com.badlogic.invaders.simulation.Simulation;
 
 /** The renderer receives a simulation and renders it.
  * @author mzechner */

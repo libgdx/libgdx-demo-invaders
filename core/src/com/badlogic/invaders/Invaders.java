@@ -11,7 +11,7 @@
  * governing permissions and limitations under the License.
  */
 
-package com.badlogic.gdxinvaders;
+package com.badlogic.invaders;
 
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Files.FileType;
@@ -21,12 +21,12 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdxinvaders.screens.GameLoop;
-import com.badlogic.gdxinvaders.screens.GameOver;
-import com.badlogic.gdxinvaders.screens.InvadersScreen;
-import com.badlogic.gdxinvaders.screens.MainMenu;
+import com.badlogic.invaders.screens.GameLoop;
+import com.badlogic.invaders.screens.GameOver;
+import com.badlogic.invaders.screens.InvadersScreen;
+import com.badlogic.invaders.screens.MainMenu;
 
-public class GdxInvaders extends Game {
+public class Invaders extends Game {
 
 	/** Music needs to be a class property to prevent being disposed. */
 	private Music music;
