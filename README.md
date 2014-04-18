@@ -5,7 +5,7 @@ libgdx-demo-invaders
 Invaders is a simplistic 3D space invaders clone.
 
 ### Try it here 
-  * [WebGL/Browser](http://libgdx.badlogicgames.com/invaders/invaders)
+  * [WebGL/Browser](http://libgdx.badlogicgames.com/demos/invaders)
   * [Desktop](http://libgdx.badlogicgames.com/demos/invaders/invaders.jar)
   * [Android](http://libgdx.badlogicgames.com/demos/invaders/invaders.apk)
 
