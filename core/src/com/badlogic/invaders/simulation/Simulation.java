@@ -318,7 +318,7 @@ public class Simulation implements Disposable {
 
 		ship.transform.trn(+delta * Ship.SHIP_VELOCITY * scale, 0, 0);
 		ship.transform.getTranslation(tmpV1);
-		if (tmpV1.x > PLAYFIELD_MAX_X) ship.transform.trn(tmpV1.x - PLAYFIELD_MAX_X, 0, 0);
+		if (tmpV1.x > PLAYFIELD_MAX_X) ship.transform.trn(PLAYFIELD_MAX_X - tmpV1.x, 0, 0);
 	}
 
 	public void shot () {
