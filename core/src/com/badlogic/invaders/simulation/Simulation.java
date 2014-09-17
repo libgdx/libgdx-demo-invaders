@@ -298,7 +298,7 @@ public class Simulation implements Disposable {
 			ship.transform.getTranslation(tmpV1);
 			int lives = ship.lives;
 			populate();
-			ship.transform.setToTranslation(tmpV1);
+			ship.transform.setTranslation(tmpV1);
 			ship.lives = lives;
 			multiplier += 0.2f;
 			wave++;
