@@ -27,7 +27,7 @@
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <false/>
     <key>UIStatusBarHidden</key>
-    <false/>
+    <true/>
     <key>UIDeviceFamily</key>
     <array>
         <integer>1</integer>
@@ -40,8 +40,20 @@
     </array>
     <key>UISupportedInterfaceOrientations</key>
     <array>
+        <string>UIInterfaceOrientationPortrait</string>
         <string>UIInterfaceOrientationLandscapeLeft</string>
         <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
+    <key>CFBundleIcons</key>
+    <dict>
+        <key>CFBundlePrimaryIcon</key>
+        <dict>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>Icon</string>
+                <string>Icon-72</string>
+            </array>
+        </dict>
+    </dict>
 </dict>
 </plist>

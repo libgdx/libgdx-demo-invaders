@@ -14,6 +14,8 @@
 package com.badlogic.invaders.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.ControllerAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -23,6 +25,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.invaders.Invaders;
 
 /** The game over screen displays the final score and a game over text and waits for the user to touch the screen in which case it
  * will signal that it is done to the orchestrating GdxInvaders class.
@@ -43,7 +46,8 @@ public class GameOver extends InvadersScreen {
 	private final Matrix4 viewMatrix = new Matrix4();
 	private final Matrix4 transformMatrix = new Matrix4();
 
-	public GameOver () {
+	public GameOver (Invaders invaders) {
+		super(invaders);
 		spriteBatch = new SpriteBatch();
 		background = new Texture(Gdx.files.internal("data/planet.jpg"));
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -53,18 +57,17 @@ public class GameOver extends InvadersScreen {
 
 		font = new BitmapFont(Gdx.files.internal("data/font16.fnt"), Gdx.files.internal("data/font16.png"), false);
 
-// if(Controllers.getControllers().size > 0) {
-// Controller controller = Controllers.getControllers().get(0);
-// if(Ouya.ID.equals(controller.getName())) {
-// controller.addListener(new ControllerAdapter() {
-// @Override
-// public boolean buttonUp (Controller controller, int buttonIndex) {
-// isDone = true;
-// return false;
-// }
-// });
-// }
-// }
+		if (invaders.getController() != null) {
+			invaders.getController().addListener(new ControllerAdapter() {
+				@Override
+				public boolean buttonUp(Controller controller,
+						int buttonIndex) {
+					controller.removeListener(this);
+					isDone = true;
+					return false;
+				}
+			});
+		}
 	}
 
 	@Override

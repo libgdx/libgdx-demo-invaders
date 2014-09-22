@@ -20,7 +20,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.ControllerAdapter;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.invaders.screens.GameLoop;
 import com.badlogic.invaders.screens.GameOver;
 import com.badlogic.invaders.screens.InvadersScreen;
@@ -31,6 +35,26 @@ public class Invaders extends Game {
 	/** Music needs to be a class property to prevent being disposed. */
 	private Music music;
 	private FPSLogger fps;
+
+	private Controller controller;
+	private ControllerAdapter controllerListener = new ControllerAdapter(){
+		@Override
+		public void connected(Controller c) {
+			if (controller == null) {
+				controller = c;
+			}
+		}
+		@Override
+		public void disconnected(Controller c) {
+			if (controller == c) {
+				controller = null;
+			}
+		}
+	};
+
+	public Controller getController() {
+		return controller;
+	}
 
 	@Override
 	public void render () {
@@ -49,16 +73,16 @@ public class Invaders extends Game {
 			// if the current screen is a main menu screen we switch to
 			// the game loop
 			if (currentScreen instanceof MainMenu) {
-				setScreen(new GameLoop());
+				setScreen(new GameLoop(this));
 			} else {
 				// if the current screen is a game loop screen we switch to the
 				// game over screen
 				if (currentScreen instanceof GameLoop) {
-					setScreen(new GameOver());
+					setScreen(new GameOver(this));
 				} else if (currentScreen instanceof GameOver) {
 					// if the current screen is a game over screen we switch to the
 					// main menu screen
-					setScreen(new MainMenu());
+					setScreen(new MainMenu(this));
 				}
 			}
 		}
@@ -68,7 +92,13 @@ public class Invaders extends Game {
 
 	@Override
 	public void create () {
-		setScreen(new MainMenu());
+		Array<Controller> controllers = Controllers.getControllers();
+		if (controllers.size > 0) {
+			controller = controllers.first();
+		}
+		Controllers.addListener(controllerListener);
+
+		setScreen(new MainMenu(this));
 		music = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/8.12.mp3", FileType.Internal));
 		music.setLooping(true);
 		music.play();

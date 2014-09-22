@@ -14,10 +14,18 @@
 package com.badlogic.invaders.screens;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.invaders.Invaders;
 
 /** Common class for a game screen, e.g. main menu, game loop, game over screen and so on.
  * @author mzechner */
 public abstract class InvadersScreen implements Screen {
+
+	protected Invaders invaders;
+
+	public InvadersScreen(Invaders invaders) {
+		this.invaders = invaders;
+	}
+
 	/** Called when the screen should update itself, e.g. continue a simulation etc. */
 	public abstract void update (float delta);
 
