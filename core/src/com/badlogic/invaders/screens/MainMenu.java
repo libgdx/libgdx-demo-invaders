@@ -46,6 +46,8 @@ public class MainMenu extends InvadersScreen {
 	private final Matrix4 viewMatrix = new Matrix4();
 	private final Matrix4 transformMatrix = new Matrix4();
 
+	private final GlyphLayout glyphLayout = new GlyphLayout();
+
 	public MainMenu (Invaders invaders) {
 		super(invaders);
 
@@ -96,12 +98,11 @@ public class MainMenu extends InvadersScreen {
 		spriteBatch.enableBlending();
 		spriteBatch.draw(logo, 0, 320 - 128, 480, 128, 0, 0, 512, 256, false, false);
 		spriteBatch.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		GlyphLayout layout = new GlyphLayout();
-		layout.setText(font, "Touch screen to start!");
-		font.draw(spriteBatch, layout, 240 - layout.width / 2, 128);
+		glyphLayout.setText(font, "Touch screen to start!");
+		font.draw(spriteBatch, glyphLayout, 240 - glyphLayout.width / 2, 128);
 		if (Gdx.app.getType() == ApplicationType.WebGL) {
-			layout.setText(font, "Press Enter for Fullscreen Mode");
-			font.draw(spriteBatch, layout, 240 - layout.width / 2, 128 - font.getLineHeight());
+			glyphLayout.setText(font, "Press Enter for Fullscreen Mode");
+			font.draw(spriteBatch, glyphLayout, 240 - glyphLayout.width / 2, 128 - font.getLineHeight());
 		}
 		spriteBatch.end();
 	}

@@ -46,6 +46,8 @@ public class GameOver extends InvadersScreen {
 	private final Matrix4 viewMatrix = new Matrix4();
 	private final Matrix4 transformMatrix = new Matrix4();
 
+	private final GlyphLayout glyphLayout = new GlyphLayout();
+
 	public GameOver (Invaders invaders) {
 		super(invaders);
 		spriteBatch = new SpriteBatch();
@@ -96,11 +98,10 @@ public class GameOver extends InvadersScreen {
 		spriteBatch.draw(background, 0, 0, 480, 320, 0, 0, 512, 512, false, false);
 		spriteBatch.enableBlending();
 		spriteBatch.draw(logo, 0, 320 - 128, 480, 128, 0, 256, 512, 256, false, false);
-		GlyphLayout layout = new GlyphLayout(font,
-				"It is the end my friend.\nTouch to continue!",
-				Color.WHITE, 480,Align.center, false);
+		glyphLayout.setText(font, "It is the end my friend.\nTouch to continue!",
+				Color.WHITE, 480, Align.center, false);
 		spriteBatch.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		font.draw(spriteBatch, layout, 0, 160 + layout.height / 2);
+		font.draw(spriteBatch, glyphLayout, 0, 160 + glyphLayout.height / 2);
 		spriteBatch.end();
 	}
 
