@@ -22,6 +22,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.invaders.Invaders;
@@ -95,13 +96,12 @@ public class MainMenu extends InvadersScreen {
 		spriteBatch.enableBlending();
 		spriteBatch.draw(logo, 0, 320 - 128, 480, 128, 0, 0, 512, 256, false, false);
 		spriteBatch.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		String text = "Touch screen to start!";
-		float width = font.getBounds(text).width;
-		font.draw(spriteBatch, text, 240 - width / 2, 128);
+		GlyphLayout layout = new GlyphLayout();
+		layout.setText(font, "Touch screen to start!");
+		font.draw(spriteBatch, layout, 240 - layout.width / 2, 128);
 		if (Gdx.app.getType() == ApplicationType.WebGL) {
-			text = "Press Enter for Fullscreen Mode";
-			width = font.getBounds(text).width;
-			font.draw(spriteBatch, "Press Enter for Fullscreen Mode", 240 - width / 2, 128 - font.getLineHeight());
+			layout.setText(font, "Press Enter for Fullscreen Mode");
+			font.draw(spriteBatch, layout, 240 - layout.width / 2, 128 - font.getLineHeight());
 		}
 		spriteBatch.end();
 	}

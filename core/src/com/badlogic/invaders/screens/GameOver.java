@@ -21,10 +21,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
-import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.invaders.Invaders;
 
 /** The game over screen displays the final score and a game over text and waits for the user to touch the screen in which case it
@@ -96,10 +96,11 @@ public class GameOver extends InvadersScreen {
 		spriteBatch.draw(background, 0, 0, 480, 320, 0, 0, 512, 512, false, false);
 		spriteBatch.enableBlending();
 		spriteBatch.draw(logo, 0, 320 - 128, 480, 128, 0, 256, 512, 256, false, false);
-		String text = "It is the end my friend.\nTouch to continue!";
-		TextBounds bounds = font.getMultiLineBounds(text);
+		GlyphLayout layout = new GlyphLayout(font,
+				"It is the end my friend.\nTouch to continue!",
+				Color.WHITE, 480,Align.center, false);
 		spriteBatch.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		font.drawMultiLine(spriteBatch, text, 0, 160 + bounds.height / 2, 480, HAlignment.CENTER);
+		font.draw(spriteBatch, layout, 0, 160 + layout.height / 2);
 		spriteBatch.end();
 	}
 
