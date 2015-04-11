@@ -29,6 +29,9 @@ import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.loader.ObjLoader;
+import com.badlogic.gdx.graphics.g3d.model.MeshPart;
+import com.badlogic.gdx.graphics.g3d.model.Node;
+import com.badlogic.gdx.graphics.g3d.model.NodePart;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
@@ -133,9 +136,30 @@ public class Simulation implements Disposable {
 
 		explosionMesh.setVertices(vertices);
 		explosionMesh.setIndices(indices);
+				
+		Material explosionMeshMaterial = new Material(new BlendingAttribute(
+				GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA),
+				TextureAttribute.createDiffuse(explosionTexture));
+		explosionModel = new Model();
+		MeshPart meshPart = new MeshPart();
+		meshPart.id = "part1";
+		meshPart.indexOffset = 0;
+		meshPart.numVertices = explosionMesh.getNumIndices();
+		meshPart.primitiveType = GL20.GL_TRIANGLES;
+		meshPart.mesh = explosionMesh;
 
-		explosionModel = ModelBuilder.createFromMesh(explosionMesh, GL20.GL_TRIANGLES, new Material(new BlendingAttribute(
-			GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA), TextureAttribute.createDiffuse(explosionTexture)));
+		NodePart partMaterial = new NodePart();
+		partMaterial.material = explosionMeshMaterial;
+		partMaterial.meshPart = meshPart;
+		Node node = new Node();
+		node.id = "node1";
+		node.parts.add(partMaterial);
+
+		explosionModel.meshes.add(explosionMesh);
+		explosionModel.materials.add(explosionMeshMaterial);
+		explosionModel.nodes.add(node);
+		explosionModel.meshParts.add(meshPart);
+		explosionModel.manageDisposable(explosionMesh);
 
 		ship = new Ship(shipModel);
 		ship.transform.rotate(0, 1, 0, 180);
