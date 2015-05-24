@@ -82,14 +82,12 @@ project(":ios") {
     apply plugin: "java"
     apply plugin: "robovm"
 
-    configurations { natives }
-
     dependencies {
         compile project(":core")
         compile "org.robovm:robovm-rt:${roboVMVersion}"
         compile "org.robovm:robovm-cocoatouch:${roboVMVersion}"
         compile "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
-        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
+        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
     }
 }
 
