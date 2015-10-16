@@ -37,7 +37,7 @@ public class Explosion extends ModelInstance {
 	public void getRenderables (Array<Renderable> renderables, Pool<Renderable> pool) {
 		super.getRenderables(renderables, pool);
 		Renderable r = renderables.get(renderables.size - 1);
-		r.meshPartOffset = 6 * (int)(15 * aliveTime / EXPLOSION_LIVE_TIME);
-		r.meshPartSize = 6;
+		r.meshPart.offset = 6 * (int)(15 * aliveTime / EXPLOSION_LIVE_TIME);
+		r.meshPart.size = 6;
 	}
 }
