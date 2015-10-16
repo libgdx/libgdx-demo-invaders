@@ -143,9 +143,9 @@ public class Simulation implements Disposable {
 		explosionModel = new Model();
 		MeshPart meshPart = new MeshPart();
 		meshPart.id = "part1";
-		meshPart.indexOffset = 0;
+		meshPart.offset = 0;
 		meshPart.numVertices = explosionMesh.getNumIndices();
-		meshPart.primitiveType = GL20.GL_TRIANGLES;
+		meshPart.size = GL20.GL_TRIANGLES;
 		meshPart.mesh = explosionMesh;
 
 		NodePart partMaterial = new NodePart();
