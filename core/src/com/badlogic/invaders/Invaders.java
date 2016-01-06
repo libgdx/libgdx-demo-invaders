@@ -106,7 +106,7 @@ public class Invaders extends Game {
 			@Override
 			public boolean keyUp (int keycode) {
 				if (keycode == Keys.ENTER && Gdx.app.getType() == ApplicationType.WebGL) {
-					if (!Gdx.graphics.isFullscreen()) Gdx.graphics.setDisplayMode(Gdx.graphics.getDisplayModes()[0]);
+					Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
 				}
 				return true;
 			}
