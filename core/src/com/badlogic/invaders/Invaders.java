@@ -87,7 +87,7 @@ public class Invaders extends Game {
 			}
 		}
 
-		fps.log();
+		// fps.log();
 	}
 
 	@Override

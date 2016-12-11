@@ -55,7 +55,7 @@ nbactions.xml
 nb-configuration.xml
 
 ## Gradle
-
+versions.json
 .gradle
 build/
 
