@@ -8,4 +8,5 @@
 	<entry-point class='com.badlogic.invaders.client.HtmlLauncher' />
 	
 	<set-configuration-property name="gdx.assetpath" value="../android/assets" />
+	<set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>
 </module>
