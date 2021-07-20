@@ -2,9 +2,9 @@
   <executableName>${app.executable}</executableName>
   <mainClass>${app.mainclass}</mainClass>
   <os>ios</os>
-  <arch>thumbv7</arch>
   <target>ios</target>
   <iosInfoPList>Info.plist.xml</iosInfoPList>
+  <treeShaker>conservative</treeShaker>
   <resources>
     <resource>
       <directory>../android/assets</directory>
@@ -31,6 +31,7 @@
     <pattern>com.android.org.bouncycastle.crypto.digests.AndroidDigestFactoryOpenSSL</pattern>
     <pattern>org.apache.harmony.security.provider.cert.DRLCertFactory</pattern>
     <pattern>org.apache.harmony.security.provider.crypto.CryptoProvider</pattern>
+    <pattern>com.badlogic.gdx.controllers.IosControllerManager</pattern>
   </forceLinkClasses>
   <libs>      
   </libs>
