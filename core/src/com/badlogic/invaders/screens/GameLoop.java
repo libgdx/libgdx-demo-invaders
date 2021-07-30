@@ -19,7 +19,6 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerAdapter;
 import com.badlogic.gdx.controllers.ControllerListener;
-import com.badlogic.gdx.controllers.mappings.Ouya;
 import com.badlogic.invaders.Invaders;
 import com.badlogic.invaders.Renderer;
 import com.badlogic.invaders.simulation.Simulation;
@@ -101,7 +100,8 @@ public class GameLoop extends InvadersScreen implements SimulationListener {
 			}
 
 			// if the left stick moved, move the ship
-			float axisValue = invaders.getController().getAxis(Ouya.AXIS_LEFT_X) * 0.5f;
+			 // FIXME Hardcoded 0 from old Ouya.AXIS_LEFT_X value
+			float axisValue = invaders.getController().getAxis(0) * 0.5f;
 			if (Math.abs(axisValue) > 0.25f) {
 				if (axisValue > 0) {
 					simulation.moveShipRight(delta, axisValue);
